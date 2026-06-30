@@ -5,12 +5,47 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>tailwind</title>
         <script src="https://cdn.tailwindcss.com"></script>
+        <style type="text/tailwindcss">
+            /* cdn 방식이라 이렇게 하고 나중에 변경해라 */
+            @layer components {
+                section {
+                    @apply border-b border-slate-200 pb-10;
+                }
+                .menu_items {
+                    @apply w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-xs font-medium transition-all duration-200 text-slate-500 hover:bg-slate-50 hover:text-slate-900;
+                }
+                .section_tit {
+                    @apply text-2xl font-bold tracking-tight text-slate-900 mb-4 sm:text-3xl;
+                }
+                .sub_tit {
+                    @apply relative text-lg font-bold text-slate-900 flex items-center gap-2 mt-4 mb-2
+                    pl-4;
+                }
+                .sub_tit::after {
+                    @apply content-[""] absolute w-[5px] h-[15px] bg-cyan-500 top-[50%] left-0 rounded-md translate-y-[-50%];
+                }
+                .code_box {
+                    @apply mt-4;
+                }
+                .code_box pre {
+                    @apply bg-slate-900 text-slate-100 p-4 rounded-xl overflow-x-auto text-[11px] leading-relaxed font-mono shadow-md border border-slate-800;
+                }
+                .code_box p {
+                    @apply text-[10px] text-slate-400 font-bold uppercase font-mono tracking-wider mb-2;
+                }
+                .txt_box {
+                    @apply bg-slate-100/60 border border-slate-200 p-4 rounded-xl text-xs text-slate-600 leading-relaxed space-y-3;
+                }
+            }
+        </style>
     </head>
     <body>
-        <div class="wrap">
-            <aside class="bg-red">
-                <div class="side_tit">
-                    <div class="icon m_icon">
+        <div class="wrap min-h-screen bg-slate-50 flex">
+            <aside class="w-64 border-r border-slate-200 bg-white flex flex-col h-screen sticky top-0">
+                <div class="side_tit p-6 border-b border-slate-100 flex items-center gap-2.5 mb-2">
+                    <div
+                        class="icon m_icon w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-md shadow-cyan-500/20"
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -27,10 +62,10 @@
                         </svg>
                     </div>
 
-                    <h1>Tailwind CSS</h1>
+                    <h1 class="font-sans font-bold text-slate-900 tracking-tight text-base leading-none">Tailwind CSS</h1>
                 </div>
-                <ul>
-                    <li>
+                <ul class="menu_item flex-1 overflow-y-auto p-4 space-y-6">
+                    <li class="menu_items">
                         <div class="icon">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +84,7 @@
                         </div>
                         <p>확장</p>
                     </li>
-                    <li>
+                    <li class="menu_items">
                         <div class="icon">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +103,7 @@
                         </div>
                         <p>장점/단점</p>
                     </li>
-                    <li>
+                    <li class="menu_items">
                         <div class="icon">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -89,25 +124,23 @@
                     </li>
                 </ul>
             </aside>
-            <main>
+            <main class="flex-1 flex flex-col min-w-0 overflow-y-auto p-8 max-w-4xl mx-auto space-y-10">
                 <header>
-                    <p>Hello,</p>
-                    <h2>About Tailwind</h2>
+                    <p class="text-sm text-slate-500 leading-relaxed max-w-2xl">Hello,</p>
+                    <h2 class="text-3xl font-bold tracking-tight uppercase text-slate-900">About Tailwind</h2>
                 </header>
-                <div class="content">
+                <div class="content space-y-8">
                     <section>
-                        <h3>확장</h3>
+                        <h3 class="section_tit">확장</h3>
                         <div>
-                            <h4>vscode 필수 확장 : Tailwind CSS IntelliSense</h4>
-                            <p>
+                            <h4 class="sub_tit">VSCODE 필수 확장 : Tailwind CSS IntelliSense</h4>
+                            <div class="txt_box">
                                 마켓플레이스에서 다운 받을 수 있으며, Tailwind 클래스 자동완성 기능<br />
                                 tailwind.config.js > 파일 만들기
-                            </p>
-                            <div>
+                            </div>
+                            <div class="code_box">
                                 <p>tailwind.config.js</p>
-                                <pre
-                                    class="bg-slate-900 text-slate-100 p-4 rounded-xl overflow-x-auto text-[11px] leading-relaxed font-mono shadow-md border border-slate-800"
-                                >
+                                <pre>
 <code>/** @type {import('tailwindcss').Config} */
 module.exports = {
     content: [
@@ -118,54 +151,46 @@ module.exports = {
         extend: {},
     },
     plugins: [],
-};
-</code>
-</pre>
+};</code></pre>
                             </div>
                         </div>
                     </section>
                     <section>
-                        <h3>장점/단점</h3>
+                        <h3 class="section_tit">장점/단점</h3>
                         <div>
-                            <h4>장점 : 생산성의 극대화</h4>
-                            <p>HTML 내에서 바로 클래스를 추가하여 원하는 디자인을 즉시 구축 가능, 단순한 프로젝트에 적합</p>
+                            <h4 class="sub_tit">장점 : 생산성의 극대화</h4>
+                            <div class="txt_box">HTML 내에서 바로 클래스를 추가하여 원하는 디자인을 즉시 구축 가능, 단순한 프로젝트에 적합</div>
                         </div>
                         <div>
-                            <h4>단점 : 가독성 저하</h4>
-                            <p>HTML 마크업이 복잡해 보이고 가독성이 저하될 수 있음</p>
+                            <h4 class="sub_tit">단점 : 가독성 저하</h4>
+                            <div class="txt_box">HTML 마크업이 복잡해 보이고 가독성이 저하될 수 있음</div>
                         </div>
                     </section>
-                    <section>
-                        <h3>기본 클래스</h3>
+                    <section class="border-b-0">
+                        <h3 class="section_tit">기본 클래스</h3>
                         <div>
-                            <h4>단위체계</h4>
-                            <p>
+                            <h4 class="sub_tit">단위체계</h4>
+                            <div class="txt_box">
                                 기본 단위(w-4)는 rem을 기반함<br />
                                 고정된 크기는 대괄호(w-[20px])를 사용하여 직접 지정 가능
-                            </p>
-                            <div>
+                            </div>
+                            <div class="code_box">
                                 <p>클래스 사용 예제 코드</p>
-                                <pre
-                                    class="bg-slate-900 text-slate-100 p-4 rounded-xl overflow-x-auto text-[11px] leading-relaxed font-mono shadow-md border border-slate-800"
-                                >
+                                <pre>
 <code>&lt;!-- rem 기반 기본 단위 예시 (1rem = 16px) --&gt;
 &lt;div class="w-4 h-4"&gt;&lt;/div&gt; &lt;!-- 16px * 16px 크기 --&gt;
 &lt;div class="w-16 h-16 bg-blue-500"&gt;&lt;/div&gt; &lt;!-- 64px * 64px 크기 --&gt;
 
 &lt;!-- 대괄호 문법을 활용한 임의의 고정값 (Arbitrary values) 지정 --&gt;
-&lt;div class="w-[20px] h-[55px]"&gt;&lt;/div&gt; &lt;!-- 20px * 55px 고정 크기 --&gt;
-</code>
-</pre>
+&lt;div class="w-[20px] h-[55px]"&gt;&lt;/div&gt; &lt;!-- 20px * 55px 고정 크기 --&gt;</code></pre>
                             </div>
                         </div>
                         <div>
-                            <h4>색상, 테두리, 라운드 처리</h4>
-                            <p>백그라운드 색상은 `bg-색상-숫자` 형태로 지정 숫자가 커질수록 색상의 명도와 채도가 짙어지는 구조</p>
-                            <div>
+                            <h4 class="sub_tit">색상, 테두리, 라운드 처리</h4>
+                            <div class="txt_box">백그라운드 색상은 `bg-색상-숫자` 형태로 지정 숫자가 커질수록 색상의 명도와 채도가 짙어지는 구조</div>
+                            <div class="code_box">
                                 <p>클래스 사용 예제 코드</p>
-                                <pre
-                                    class="bg-slate-900 text-slate-100 p-4 rounded-xl overflow-x-auto text-[11px] leading-relaxed font-mono shadow-md border border-slate-800"
-                                ><code>&lt;!-- 핑크 배경에 8px 검정색 테두리, 25px 라운딩 및 원형 실습 코드 --&gt;
+                                <pre><code>&lt;!-- 핑크 배경에 8px 검정색 테두리, 25px 라운딩 및 원형 실습 코드 --&gt;
 &lt;!-- 1. 25px 라운드 처리된 핑크 박스 --&gt;
 &lt;div class="bg-pink-400 border-8 border-black rounded-[25px] w-28 h-28 flex items-center justify-center"&gt;
   rounded-[25px]
@@ -178,40 +203,40 @@ module.exports = {
                             </div>
                         </div>
                         <div>
-                            <h4>레이아웃: 너비(W), 높이(H), 패딩(P), 마진(M)</h4>
-                            <p>
+                            <h4 class="sub_tit">레이아웃: 너비(W), 높이(H), 패딩(P), 마진(M)</h4>
+                            <div class="txt_box">
                                 width(W), height(H), padding(P), margin(M)<br />
                                 x축(좌우)과 y축(상하) 가능(mx-10), w-full > 화면 전체
-                            </p>
+                            </div>
                         </div>
                         <div>
-                            <h4>텍스트</h4>
-                            <p>
+                            <h4 class="sub_tit">텍스트</h4>
+                            <div class="txt_box">
                                 text-color, text-size, font-bold, cursor<br />
                                 cursor-pointer > 마우스 커서 모양을 변경<br />
-                            </p>
+                            </div>
                         </div>
                         <div>
-                            <h4>Flex</h4>
-                            <p>
+                            <h4 class="sub_tit">Flex</h4>
+                            <div class="txt_box">
                                 flex, flex-col, justify, items, gap-4<br />
                                 flex justify-center items-center > 정 가운데 정렬
-                            </p>
+                            </div>
                         </div>
                         <div>
-                            <h4>Hover</h4>
-                            <p>
+                            <h4 class="sub_tit">Hover</h4>
+                            <div class="txt_box">
                                 hover:<br />
                                 hover:bg-purple-400 transition > 호버시 백그라운드가 보라색으로 변해라 자연스럽게(transition)
-                            </p>
+                            </div>
                         </div>
                         <div>
-                            <h4>고급 기능: 그룹 호버(Group Hover)</h4>
-                            <p>
+                            <h4 class="sub_tit">고급 기능: 그룹 호버(Group Hover)</h4>
+                            <div class="txt_box">
                                 group-hover > 최상위 요소에 부여<br />
                                 상위 요소에 마우스를 올렸을 때 하위 요소의 스타일이 동시에 변경<br />
                                 스타일 변경하는 하위 요소에 group-hover:~ 부여 하면 변경됨
-                            </p>
+                            </div>
                         </div>
                     </section>
                 </div>
