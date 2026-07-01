@@ -12,7 +12,7 @@
                     @apply border-b border-slate-200 pb-10;
                 }
                 .menu_items {
-                    @apply w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-xs font-medium transition-all duration-200 text-slate-500 hover:bg-slate-50 hover:text-slate-900;
+                    @apply w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-xs font-medium cursor-pointer transition-all duration-200 text-slate-500 hover:bg-slate-50 hover:text-slate-900;
                 }
                 .section_tit {
                     @apply text-2xl font-bold tracking-tight text-slate-900 mb-4 sm:text-3xl;
@@ -65,7 +65,7 @@
                     <h1 class="font-sans font-bold text-slate-900 tracking-tight text-base leading-none">Tailwind CSS</h1>
                 </div>
                 <ul class="menu_item flex-1 overflow-y-auto p-4 space-y-6">
-                    <li class="menu_items">
+                    <li class="menu_items" data-target="extend">
                         <div class="icon">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +84,7 @@
                         </div>
                         <p>확장</p>
                     </li>
-                    <li class="menu_items">
+                    <li class="menu_items" data-target="proscons">
                         <div class="icon">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +103,7 @@
                         </div>
                         <p>장점/단점</p>
                     </li>
-                    <li class="menu_items">
+                    <li class="menu_items" data-target="basic">
                         <div class="icon">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -122,6 +122,25 @@
                         </div>
                         <p>기본 클래스</p>
                     </li>
+                    <li class="menu_items" data-target="link">
+                        <div class="icon">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="size-6"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
+                                />
+                            </svg>
+                        </div>
+                        <p>참고 링크</p>
+                    </li>
                 </ul>
             </aside>
             <main class="flex-1 flex flex-col min-w-0 overflow-y-auto p-8 max-w-4xl mx-auto space-y-10">
@@ -130,7 +149,7 @@
                     <h2 class="text-3xl font-bold tracking-tight uppercase text-slate-900">About Tailwind</h2>
                 </header>
                 <div class="content space-y-8">
-                    <section>
+                    <section id="extend">
                         <h3 class="section_tit">확장</h3>
                         <div>
                             <h4 class="sub_tit">VSCODE 필수 확장 : Tailwind CSS IntelliSense</h4>
@@ -155,7 +174,7 @@ module.exports = {
                             </div>
                         </div>
                     </section>
-                    <section>
+                    <section id="proscons">
                         <h3 class="section_tit">장점/단점</h3>
                         <div>
                             <h4 class="sub_tit">장점 : 생산성의 극대화</h4>
@@ -166,7 +185,7 @@ module.exports = {
                             <div class="txt_box">HTML 마크업이 복잡해 보이고 가독성이 저하될 수 있음</div>
                         </div>
                     </section>
-                    <section class="border-b-0">
+                    <section id="basic">
                         <h3 class="section_tit">기본 클래스</h3>
                         <div>
                             <h4 class="sub_tit">단위체계</h4>
@@ -239,8 +258,30 @@ module.exports = {
                             </div>
                         </div>
                     </section>
+                    <section class="border-b-0" id="link">
+                        <h3 class="section_tit">참고 링크</h3>
+                        <div>
+                            <div class="txt_box">
+                                <a href="https://www.heropy.dev/p/E67ZHS" target="_blank" class="text-cyan-800 font-bold">Tailwind CSS 핵심 패턴</a>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </main>
         </div>
+        <script>
+            document.querySelectorAll(".menu_items").forEach((item) => {
+                item.addEventListener("click", () => {
+                    const target = document.getElementById(item.dataset.target);
+
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                        });
+                    }
+                });
+            });
+        </script>
     </body>
 </html>
